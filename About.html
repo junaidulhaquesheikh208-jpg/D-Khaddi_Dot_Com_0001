@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khaadi - About Us</title>
+
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//placehold.co">
+
+    <!-- Optimized font loading with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.min.css"></noscript>
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+
+    <!-- Resource hints for critical resources -->
+    <link rel="prefetch" href="script.min.js">
+
+    <!-- Critical above-the-fold CSS inline -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;line-height:1.6;color:#333}header{background-color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:100}nav{max-width:1200px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}.logo{font-size:1.8rem;font-weight:700;color:#d4af37}.nav-menu{display:flex;list-style:none;gap:2rem}.nav-menu a{text-decoration:none;color:#333;font-weight:500;transition:color .3s ease}.nav-menu a:hover{color:#d4af37}#hero{background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('./images/splash-img-desktop.jpg') center/cover no-repeat;height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white}#hero h1{font-size:3rem;margin-bottom:1rem}#hero p{font-size:1.2rem;margin-bottom:2rem}@media (max-width:768px){nav{flex-direction:column;gap:1rem}.nav-menu{gap:1rem}#hero h1{font-size:2rem}}
+        
+        /* Additional styles for about page */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2rem;
+            color: #333;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .about-text {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .card h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+        
+        .team-section {
+            margin: 4rem 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid #d4af37;
+        }
+        
+        .history-timeline {
+            max-width: 800px;
+            margin: 3rem auto;
+            position: relative;
+        }
+        
+        .timeline-item {
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #d4af37;
+            border-radius: 50%;
+        }
+        
+        .values-section {
+            margin: 4rem 0;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">KHAADI</div>
+            <ul class="nav-menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Collections.html">Collections</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="Shop.html">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>About Khaadi</h1>
+            <p>Our story, mission, and commitment to excellence</p>
+        </section>
+
+        <div class="container">
+            <section class="about-content">
+                <p class="about-text">
+                    Khaadi is Pakistan's premier fashion brand, established in 2006 with a vision to celebrate 
+                    the beauty of Pakistani culture through contemporary fashion. Our journey began with a 
+                    simple idea: to create clothing that honors traditional craftsmanship while embracing 
+                    modern aesthetics.
+                </p>
+                
+                <p class="about-text">
+                    Today, Khaadi stands as a symbol of elegance and sophistication, offering a diverse range 
+                    of clothing that caters to various occasions - from casual wear to formal attire and 
+                    special occasion ensembles. Our commitment to quality, attention to detail, and 
+                    innovative designs have made us a trusted name in the fashion industry.
+                </p>
+            </section>
+
+            <section class="mission-vision">
+                <div class="card">
+                    <h3>Our Mission</h3>
+                    <p>
+                        To create exceptional fashion experiences that blend traditional Pakistani 
+                        craftsmanship with contemporary design, empowering individuals to express their 
+                        unique style while preserving our cultural heritage.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h3>Our Vision</h3>
+                    <p>
+                        To be the leading fashion destination that represents the essence of Pakistani 
+                        culture globally, setting trends while maintaining the highest standards of 
+                        quality and customer satisfaction.
+                    </p>
+                </div>
+            </section>
+
+            <section class="history-timeline">
+                <h2 class="section-title">Our Journey</h2>
+                
+                <div class="timeline-item">
+                    <h3>2006 - Foundation</h3>
+                    <p>Khaadi was founded with the aim to revolutionize Pakistani fashion retail industry.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>2010 - Expansion</h3>
+                    <p>Opened multiple stores across major cities in Pakistan.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>2015 - International Presence</h3>
+                    <p>Launched international shipping and opened stores in key global markets.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>2020 - Digital Transformation</h3>
+                    <p>Enhanced online presence and introduced e-commerce platform.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>2026 - Innovation</h3>
+                    <p>Continued commitment to sustainable fashion and technological advancement.</p>
+                </div>
+            </section>
+
+            <section class="values-section">
+                <h2 class="section-title">Our Values</h2>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🧵</div>
+                        <h3>Craftsmanship</h3>
+                        <p>We honor traditional techniques and skilled artisans who bring our designs to life.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">💎</div>
+                        <h3>Quality</h3>
+                        <p>We use only the finest materials to ensure durability and comfort.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">🌍</div>
+                        <h3>Sustainability</h3>
+                        <p>We are committed to responsible production and environmental consciousness.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">❤️</div>
+                        <h3>Heritage</h3>
+                        <p>We celebrate and preserve Pakistani cultural traditions through fashion.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="team-section">
+                <h2 class="section-title">Our Leadership Team</h2>
+                
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 1rem; background: #d4af37; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CEO</div>
+                        <h3>Fashion Director</h3>
+                        <p>Visionary leader with 15+ years in fashion industry</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 1rem; background: #d4af37; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CTO</div>
+                        <h3>Design Head</h3>
+                        <p>Master of traditional and contemporary fusion designs</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 1rem; background: #d4af37; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CMO</div>
+                        <h3>Operations Director</h3>
+                        <p>Ensuring excellence in every customer experience</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Khaadi. All rights reserved.</p>
+        <p>Premium Fashion Brand | Crafted with Excellence</p>
+    </footer>
+
+    <!-- Register service worker for caching -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+
+    <!-- Inline critical JavaScript for performance -->
+    <script>
+        // Advanced image lazy loading implementation with WebP support
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyElements = [].slice.call(document.querySelectorAll('.lazy-load, img[data-src]'));
+
+            if ('IntersectionObserver' in window) {
+                let lazyObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            // Handle picture elements with sources
+                            if (entry.target.tagName === 'PICTURE') {
+                                const sources = entry.target.querySelectorAll('source[data-src]');
+                                sources.forEach(source => {
+                                    source.src = source.dataset.src;
+                                    source.removeAttribute('data-src');
+                                });
+
+                                const img = entry.target.querySelector('img[data-src]');
+                                if (img) {
+                                    img.src = img.dataset.src;
+                                    img.classList.add('loaded');
+                                    img.removeAttribute('data-src');
+                                }
+                            }
+                            // Handle regular images
+                            else if (entry.target.tagName === 'IMG' && entry.target.hasAttribute('data-src')) {
+                                entry.target.src = entry.target.dataset.src;
+                                entry.target.classList.add('loaded');
+                                entry.target.removeAttribute('data-src');
+                            }
+
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+
+                lazyElements.forEach(function(element) {
+                    lazyObserver.observe(element);
+                });
+            } else {
+                // Fallback for browsers that don't support IntersectionObserver
+                lazyElements.forEach(function(element) {
+                    if (element.tagName === 'PICTURE') {
+                        const sources = element.querySelectorAll('source[data-src]');
+                        sources.forEach(source => {
+                            source.src = source.dataset.src;
+                            source.removeAttribute('data-src');
+                        });
+
+                        const img = element.querySelector('img[data-src]');
+                        if (img) {
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                            img.removeAttribute('data-src');
+                        }
+                    } else if (element.tagName === 'IMG' && element.hasAttribute('data-src')) {
+                        const imageSrc = element.dataset.src;
+                        if (!imageSrc) return;
+
+                        const img = new Image();
+                        img.onload = function() {
+                            element.src = imageSrc;
+                            element.classList.add('loaded');
+                        };
+                        img.src = imageSrc;
+                    }
+                });
+            }
+        });
+
+        // Optimize font loading completion
+        if ('fonts' in document) {
+            document.fonts.ready.then(() => {
+                // All fonts loaded, do something if needed
+            });
+        }
+    </script>
+
+    <!-- Async loading of non-critical JavaScript -->
+    <script src="script.min.js" defer async></script>
+    <script src="performance-monitoring.js" defer async></script>
+</body>
+</html>

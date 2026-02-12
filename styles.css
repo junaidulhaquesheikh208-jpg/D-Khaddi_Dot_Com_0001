@@ -1,162 +1,386 @@
-/* Reset and base styles */
-* {
-    margin: 0;
+/*------------------------------------------------------------------*/
+/*  KHAADI LIVE CHAT CUSTOM STYLES
+/*------------------------------------------------------------------*/
+
+/* Minimized Chat Button */
+.embeddedServiceSidebar button.embeddedServiceSidebarMinimizedDefaultUI {
+    background: #fff url('data:image/svg+xml,<svg width="31" height="32" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 10.0249H20.6666C21.5833 10.0249 22.3333 10.7749 22.3333 11.6916V20.3582C22.3333 21.2749 21.5833 22.0249 20.6666 22.0249H17.4166L12.4166 25.2749V22.0249H10.3333C9.41658 22.0249 8.66658 21.2749 8.66658 20.3582V11.6916C8.66658 10.7749 9.41658 10.0249 10.3333 10.0249Z" fill="%23FF5C35"/><path d="M13.4166 14.4416H17.5833" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M13.4166 17.6916H15.7499" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>') no-repeat center;
+    background-size: 34px;
+    width: 50px;
+    height: 50px;
+    min-width: auto;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0px 6px 10px -3px rgb(0 0 0 / 10%);
+    bottom: 102px !important;
     padding: 0;
-    box-sizing: border-box;
+    right: 112px;
+    transition: 0.2s all ease-in-out;
+    z-index: 99999;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Header styles */
-header {
+.embeddedServiceSidebar button.embeddedServiceSidebarMinimizedDefaultUI:hover,
+.embeddedServiceSidebar button.embeddedServiceSidebarMinimizedDefaultUI:focus {
     background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    box-shadow: 0 3px 15px 0 rgb(0 0 0 / 20%);
 }
 
-nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.embeddedServiceSidebar button.embeddedServiceSidebarMinimizedDefaultUI.newMessage::before {
+    background-color: #ff5c35;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 10px;
+    position: absolute;
+    right: 9px;
+    top: 9px;
+    width: 10px;
 }
 
-.logo {
-    font-size: 1.8rem;
+.embeddedServiceSidebar button.embeddedServiceSidebarMinimizedDefaultUI .content {
+    display: none;
+}
+
+/* Maximized Chat Window */
+.embeddedServiceSidebar.layout-docked .dockableContainer.showDockableContainer {
+    border-radius: 20px;
+    max-width: 384px;
+    width: 100%;
+    bottom: 74px;
+    right: 112px;
+    left: unset;
+    top: unset;
+    margin: 0;
+    height: 90%;
+    position: fixed;
+    max-height: var(--lwc-sidebarHeight, 498px);
+}
+
+/* Chat Header */
+.embeddedServiceSidebar embeddedservice-chat-header .sidebarHeader {
+    background-color: #ff5c35;
+    padding: 8px 20px;
+    border-bottom: 1px solid #dae2e6;
+}
+
+.embeddedServiceSidebar embeddedservice-chat-header .sidebarHeader > h2 {
+    font-family: 'Khaadi', sans-serif;
+    font-size: 20px;
     font-weight: 700;
-    color: #d4af37;
+    line-height: 1;
 }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
+.embeddedServiceSidebar embeddedservice-chat-header .sidebarHeader .minimizeButton {
+    background: url('data:image/svg+xml,<svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.06152 9.6842L15.3115 20.9635L26.5615 9.6842" stroke="white" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center;
+    background-size: 34px;
+    outline: none;
 }
 
-.nav-menu a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
+.embeddedServiceSidebar embeddedservice-chat-header .sidebarHeader .minimizeButton::before,
+.embeddedServiceSidebar embeddedservice-chat-header .sidebarHeader .closeButton::before {
+    display: none;
 }
 
-.nav-menu a:hover {
-    color: #d4af37;
+.embeddedServiceSidebar embeddedservice-chat-header .sidebarHeader .closeButton {
+    height: 30px;
+    margin-left: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 0;
+    width: 30px;
+    outline: none;
 }
 
-/* Hero section */
-#hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1200x600/cccccc/96a2b4?text=Hero+Image') center/cover no-repeat;
-    height: 80vh;
+.embeddedServiceSidebar embeddedservice-chat-header .sidebarHeader .minimizeButton lightning-icon.slds-icon-utility-minimize-window {
+    display: none;
+}
+
+/* Pre-Chat Form */
+.embeddedServiceSidebar .sidebarBody .fieldList {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    row-gap: 24px;
+    margin: 0;
+    padding: 26px 20px 20px;
+    font-family: 'Khaadi', sans-serif;
+}
+
+.embeddedServiceSidebar .sidebarBody .fieldList .embeddedServiceSidebarFormField label {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+    color: #81807f;
+    padding-right: 10px;
+}
+
+.embeddedServiceSidebar .sidebarBody .fieldList .embeddedServiceSidebarFormField label .required {
+    font-size: 20px;
+    left: unset;
+    right: 0;
+    top: -4px;
+}
+
+.embeddedServiceSidebar .sidebarBody .fieldList .embeddedServiceSidebarFormField input {
+    border: none;
+    border-bottom: 1px solid #dcdbdb;
+    border-radius: 0;
+    box-shadow: none;
+    color: #000;
+    font-size: 16px;
+    font-family: 'Khaadi', sans-serif;
+    font-weight: 400;
+    height: 30px;
+    line-height: 1;
+    padding: 6px 0;
+}
+
+.embeddedServiceSidebar .sidebarBody .fieldList .embeddedServiceSidebarFormField input::placeholder {
+    color: #8f8f8f;
+    font-weight: 300;
+}
+
+/* Terms & Conditions */
+.embeddedServiceSidebar .sidebarBody .termsAndConditionsContainer {
+    margin: 0;
+    padding: 0 20px;
+}
+
+.embeddedServiceSidebar .sidebarBody .termsAndConditionsContainer .inputCheckbox .uiInputCheckbox {
+    display: flex;
     align-items: center;
-    text-align: center;
-    color: white;
 }
 
-#hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+.embeddedServiceSidebar .sidebarBody .termsAndConditionsContainer .inputCheckbox .uiInputCheckbox > input {
+    order: -1;
 }
 
-#hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+.embeddedServiceSidebar .sidebarBody .termsAndConditionsContainer .inputCheckbox .uiInputCheckbox > label {
+    font-family: 'Khaadi', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 12px;
+    margin: 0 0 0 6px;
+    padding-right: 10px;
+    text-align: left;
 }
 
-/* Products section */
-#products {
-    max-width: 1200px;
-    margin: 4rem auto;
-    padding: 0 2rem;
+/* Start Chat Button */
+.embeddedServiceSidebar .sidebarBody .buttonWrapper .embeddedServiceSidebarButton {
+    background: #2d2b2a;
+    border-radius: 30px;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 12px;
+    max-width: 294px;
+    text-transform: uppercase;
 }
 
-#products h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
+/* Chat Messages Area */
+.embeddedServiceSidebar .sidebarBody .messageArea .chatSessionStartTime {
+    color: #8E8E8E;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 12px 0;
 }
 
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
+/* Agent Messages */
+.embeddedServiceSidebar .sidebarBody ul.messageWrapper li.embeddedServiceLiveAgentStateChatMessage .nameAndTimeContent .agentName {
+    color: #404040;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 15.62px;
+    margin-left: 54px;
 }
 
-.product-card {
-    text-align: center;
-    padding: 1rem;
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.embeddedServiceSidebar .sidebarBody ul.messageWrapper li .chatContent .plaintextContent {
+    background: #fff;
+    border-radius: 0 20px 20px 20px;
+    border: 1px solid #DCDBDB;
+    color: #3E3E3E;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    margin-left: 24px;
+    max-width: 280px;
+    padding: 16px 20px 16px 30px;
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+/* Customer Messages */
+.embeddedServiceSidebar .sidebarBody ul.messageWrapper li.embeddedServiceLiveAgentStateChatMessage.chasitor .chatContent .plaintextContent {
+    background: rgb(255 92 53 / 16%);
+    border: none;
+    border-radius: 20px 20px 0 20px;
+    min-width: 177px;
+    padding: 12px;
 }
 
-.product-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+/* Chat Input Area */
+.embeddedServiceSidebar .sidebarBody .chasitorInputWrapper {
+    background: transparent;
+    padding: 0 20px 20px;
+    height: auto;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
 }
 
-/* About section */
-#about-section {
-    max-width: 1200px;
-    margin: 4rem auto;
-    padding: 0 2rem;
-    text-align: center;
+.embeddedServiceSidebar .sidebarBody .chasitorInputWrapper .chasitorControls .chasitorText {
+    border: 1px solid #DCDBDB;
+    border-radius: 40px;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 44px;
+    line-height: 1;
+    padding: 14px 10px;
 }
 
-/* Footer */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
-}
-
-/* Lazy loading placeholder */
-.lazy-load[data-src] {
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.lazy-load.loaded {
+.embeddedServiceSidebar .sidebarBody .chasitorInputWrapper .chasitorControls .chatActionButton.Send .embeddedServiceIcon svg {
+    fill: #FF5C35;
     opacity: 1;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    nav {
+/* Menu Button (Three Lines) */
+.embeddedServiceSidebar .sidebarBody .chasitorInputWrapper .footerMenuWrapper .footer-menu .slds-dropdown-trigger .slds-button {
+    background: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12.5H22" stroke="%23FF5C35" stroke-width="2" stroke-linecap="round"/><path d="M2 5H22" stroke="%23FF5C35" stroke-width="2" stroke-linecap="round"/><path d="M2 20H22" stroke="%23FF5C35" stroke-width="2" stroke-linecap="round"/></svg>') no-repeat center;
+    box-shadow: none;
+    color: #FF5C35;
+    height: 24px;
+    transform: none;
+    width: 24px;
+}
+
+/* Waiting/Queue State */
+.embeddedServiceSidebar .sidebarBody .waitingStateContainer .queuePositionWaiting .youAreNextMessage {
+    color: #404040;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 27px 0 0;
+}
+
+.embeddedServiceSidebar .sidebarBody .waitingStateContainer .queuePositionWaiting .queuePositionMessage {
+    color: #404040;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 12px;
+    margin: 10px 0 0;
+}
+
+.embeddedServiceSidebar .sidebarBody .waitingStateContainer .waitingCancelChat {
+    background: #2d2b2a;
+    border: none;
+    border-radius: 30px;
+    box-shadow: none;
+    color: #FFF;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 12px;
+    margin: 0 auto;
+    max-width: 294px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/* Dialog/Confirmation State */
+.embeddedServiceSidebar .sidebarBody .dialogState .dialogTextContainer #dialogTextBody {
+    color: #FFF;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24.2px;
+    text-align: center;
+    padding: 0;
+    max-width: 243px;
+    margin: 0 auto 38px;
+}
+
+.embeddedServiceSidebar .sidebarBody .dialogState .dialogButtonContainer .dialogButton {
+    background: #FFF;
+    border: none;
+    border-radius: 40px;
+    box-shadow: none;
+    color: #000;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18.15px;
+    margin: 0;
+    min-width: 95px;
+    padding: 13px 35px;
+    text-decoration: none;
+    width: auto;
+}
+
+/* End Chat Button */
+.embeddedServiceSidebar .sidebarBody .endChatContainer .endChatButton {
+    background: #2d2b2a;
+    border-radius: 30px;
+    box-shadow: none;
+    font-family: 'Khaadi', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 12px;
+    margin: 0 auto;
+    max-width: 294px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/* Agent Avatar */
+.embeddedServiceSidebar .sidebarBody ul.messageWrapper li .isLightningOutContext .avatar {
+    background-size: 40px;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .embeddedServiceSidebar.layout-docked.sidebarMaximized {
+        background: rgba(107, 107, 107, 0.8);
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
         flex-direction: column;
-        gap: 1rem;
+        height: 100vh;
+        position: fixed;
+        bottom: 0;
+        top: unset;
+        width: 100%;
+        z-index: 10000;
     }
     
-    .nav-menu {
-        gap: 1rem;
+    .embeddedServiceSidebar.layout-docked .dockableContainer.showDockableContainer {
+        border-radius: 20px 20px 0 0;
+        height: auto !important;
+        margin: 0;
+        max-height: calc(100% - 72px);
+        max-width: 430px;
+        min-height: 591px;
+        position: static;
     }
     
-    #hero h1 {
-        font-size: 2rem;
+    .embeddedServiceSidebar button.embeddedServiceSidebarMinimizedDefaultUI {
+        bottom: 113px !important;
+        right: 22px;
     }
-    
-    .product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
+}
+
+/* iOS Safari Specific */
+@media (max-width: 1024px) and (min-width: 320px) {
+    @supports (-webkit-touch-callout: none) and (not (hover: hover)) {
+        .embeddedServiceSidebar.layout-docked .dockableContainer.showDockableContainer {
+            max-height: calc(100% - 160px);
+        }
     }
 }

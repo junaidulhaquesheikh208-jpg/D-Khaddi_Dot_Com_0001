@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khaadi - Premium Fashion Shop</title>
+
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//placehold.co">
+
+    <!-- Optimized font loading with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.min.css"></noscript>
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+
+    <!-- Resource hints for critical resources -->
+    <link rel="prefetch" href="script.min.js">
+
+    <!-- Critical above-the-fold CSS inline -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;line-height:1.6;color:#333}header{background-color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:100}nav{max-width:1200px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}.logo{font-size:1.8rem;font-weight:700;color:#d4af37}.nav-menu{display:flex;list-style:none;gap:2rem}.nav-menu a{text-decoration:none;color:#333;font-weight:500;transition:color .3s ease}.nav-menu a:hover{color:#d4af37}#hero{background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('./images/splash-img-desktop.jpg') center/cover no-repeat;height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white}#hero h1{font-size:3rem;margin-bottom:1rem}#hero p{font-size:1.2rem;margin-bottom:2rem}@media (max-width:768px){nav{flex-direction:column;gap:1rem}.nav-menu{gap:1rem}#hero h1{font-size:2rem}}
+        
+        /* Additional styles for shop page */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2rem;
+            color: #333;
+        }
+        
+        .shop-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: #d4af37;
+            color: white;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-content {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #d4af37;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+        
+        .product-info {
+            padding: 1rem;
+        }
+        
+        .product-info h3 {
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        
+        .product-info p {
+            margin: 0.5rem 0;
+            color: #d4af37;
+            font-weight: bold;
+        }
+        
+        .price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .discount-price {
+            color: #d4af37;
+            font-weight: bold;
+        }
+        
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background: #d4af37;
+        }
+        
+        .cart-icon {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        
+        .sort-options {
+            text-align: center;
+            margin: 1rem 0 2rem;
+        }
+        
+        .sort-select {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+        
+        .page-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .page-btn.active {
+            background: #d4af37;
+            color: white;
+        }
+        
+        /* Shopping cart styles */
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-container.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+        
+        .cart-item-price {
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .quantity {
+            margin: 0 0.5rem;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+        }
+        
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        
+        .cart-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">KHAADI</div>
+            <ul class="nav-menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Collections.html">Collections</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Shop.html">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Shop Our Premium Collection</h1>
+            <p>Discover the latest trends in Pakistani fashion</p>
+        </section>
+
+        <div class="container">
+            <section id="shop-filters">
+                <h2 class="section-title">Filter Products</h2>
+                <div class="shop-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">New Arrivals</button>
+                    <button class="filter-btn">Best Sellers</button>
+                    <button class="filter-btn">On Sale</button>
+                    <button class="filter-btn">Wedding</button>
+                    <button class="filter-btn">Festival</button>
+                </div>
+                
+                <div class="sort-options">
+                    <label for="sort-select">Sort by:</label>
+                    <select id="sort-select" class="sort-select">
+                        <option>Featured</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest Arrivals</option>
+                        <option>Customer Rating</option>
+                    </select>
+                </div>
+            </section>
+
+            <section id="products">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <!-- Advanced lazy loading with WebP support -->
+                        <picture class="lazy-load">
+                            <source data-src="./images/0 (1).webp" type="image/webp">
+                            <img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect fill='%23f0f0f0' width='300' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%2396a2b4'%3EProduct 1%3C/text%3E%3C/svg%3E"
+                                data-src="./images/0 (1).webp"
+                                alt="Premium Bridal Lehenga"
+                                class="image-content"
+                                loading="lazy"
+                                width="300"
+                                height="400">
+                        </picture>
+                        <span class="product-badge">New</span>
+                        <div class="product-info">
+                            <h3>Premium Bridal Lehenga</h3>
+                            <div class="price">
+                                <span class="discount-price">$299.99</span>
+                                <span class="original-price">$349.99</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <span class="cart-icon">🛒</span> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <picture class="lazy-load">
+                            <source data-src="./images/0 (2).webp" type="image/webp">
+                            <img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect fill='%23f0f0f0' width='300' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%2396a2b4'%3EProduct 2%3C/text%3E%3C/svg%3E"
+                                data-src="./images/0 (2).webp"
+                                alt="Designer Kurta Set"
+                                class="image-content"
+                                loading="lazy"
+                                width="300"
+                                height="400">
+                        </picture>
+                        <span class="product-badge">Sale</span>
+                        <div class="product-info">
+                            <h3>Designer Kurta Set</h3>
+                            <div class="price">
+                                <span class="discount-price">$129.99</span>
+                                <span class="original-price">$159.99</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <span class="cart-icon">🛒</span> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <picture class="lazy-load">
+                            <source data-src="./images/0.webp" type="image/webp">
+                            <img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect fill='%23f0f0f0' width='300' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%2396a2b4'%3EProduct 3%3C/text%3E%3C/svg%3E"
+                                data-src="./images/0.webp"
+                                alt="Traditional Anarkali"
+                                class="image-content"
+                                loading="lazy"
+                                width="300"
+                                height="400">
+                        </picture>
+                        <div class="product-info">
+                            <h3>Traditional Anarkali</h3>
+                            <div class="price">
+                                <span class="discount-price">$159.99</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <span class="cart-icon">🛒</span> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <picture class="lazy-load">
+                            <source data-src="./images/t-a22-26-105fa_multi_2.webp" type="image/webp">
+                            <img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect fill='%23f0f0f0' width='300' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%2396a2b4'%3EProduct 4%3C/text%3E%3C/svg%3E"
+                                data-src="./images/t-a22-26-105fa_multi_2.webp"
+                                alt="Wedding Collection Suit"
+                                class="image-content"
+                                loading="lazy"
+                                width="300"
+                                height="400">
+                        </picture>
+                        <span class="product-badge">Best Seller</span>
+                        <div class="product-info">
+                            <h3>Wedding Collection Suit</h3>
+                            <div class="price">
+                                <span class="discount-price">$249.99</span>
+                                <span class="original-price">$299.99</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <span class="cart-icon">🛒</span> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <picture class="lazy-load">
+                            <source data-src="./images/2-26-104-a-h_multi_2.webp" type="image/webp">
+                            <img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect fill='%23f0f0f0' width='300' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%2396a2b4'%3EProduct 5%3C/text%3E%3C/svg%3E"
+                                data-src="./images/2-26-104-a-h_multi_2.webp"
+                                alt="Festival Special"
+                                class="image-content"
+                                loading="lazy"
+                                width="300"
+                                height="400">
+                        </picture>
+                        <span class="product-badge">New</span>
+                        <div class="product-info">
+                            <h3>Festival Special</h3>
+                            <div class="price">
+                                <span class="discount-price">$179.99</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <span class="cart-icon">🛒</span> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <picture class="lazy-load">
+                            <source data-src="./images/JanSale-Now-live-desktop-banner-1920x700-nowlivejan.webp" type="image/webp">
+                            <img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect fill='%23f0f0f0' width='300' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%2396a2b4'%3EProduct 6%3C/text%3E%3C/svg%3E"
+                                data-src="./images/JanSale-Now-live-desktop-banner-1920x700-nowlivejan.webp"
+                                alt="Limited Edition"
+                                class="image-content"
+                                loading="lazy"
+                                width="300"
+                                height="400">
+                        </picture>
+                        <span class="product-badge">Limited</span>
+                        <div class="product-info">
+                            <h3>Limited Edition</h3>
+                            <div class="price">
+                                <span class="discount-price">$199.99</span>
+                                <span class="original-price">$249.99</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <span class="cart-icon">🛒</span> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pagination">
+                <div class="pagination">
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">Next →</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shopping Cart -->
+    <div class="cart-container" id="cartContainer">
+        <div class="cart-header">
+            <h3>Your Cart (<span id="cartCount">0</span>)</h3>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart-message" id="emptyCartMessage">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Toggle Button -->
+    <button class="cart-toggle" id="cartToggle">
+        🛒
+        <span class="cart-count" id="cartCounter">0</span>
+    </button>
+
+    <footer>
+        <p>&copy; 2026 Khaadi. All rights reserved.</p>
+        <p>Premium Fashion Brand | Crafted with Excellence</p>
+    </footer>
+
+    <!-- Register service worker for caching -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+
+    <!-- Inline critical JavaScript for performance -->
+    <script>
+        // Advanced image lazy loading implementation with WebP support
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyElements = [].slice.call(document.querySelectorAll('.lazy-load, img[data-src]'));
+
+            if ('IntersectionObserver' in window) {
+                let lazyObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            // Handle picture elements with sources
+                            if (entry.target.tagName === 'PICTURE') {
+                                const sources = entry.target.querySelectorAll('source[data-src]');
+                                sources.forEach(source => {
+                                    source.src = source.dataset.src;
+                                    source.removeAttribute('data-src');
+                                });
+
+                                const img = entry.target.querySelector('img[data-src]');
+                                if (img) {
+                                    img.src = img.dataset.src;
+                                    img.classList.add('loaded');
+                                    img.removeAttribute('data-src');
+                                }
+                            }
+                            // Handle regular images
+                            else if (entry.target.tagName === 'IMG' && entry.target.hasAttribute('data-src')) {
+                                entry.target.src = entry.target.dataset.src;
+                                entry.target.classList.add('loaded');
+                                entry.target.removeAttribute('data-src');
+                            }
+
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+
+                lazyElements.forEach(function(element) {
+                    lazyObserver.observe(element);
+                });
+            } else {
+                // Fallback for browsers that don't support IntersectionObserver
+                lazyElements.forEach(function(element) {
+                    if (element.tagName === 'PICTURE') {
+                        const sources = element.querySelectorAll('source[data-src]');
+                        sources.forEach(source => {
+                            source.src = source.dataset.src;
+                            source.removeAttribute('data-src');
+                        });
+
+                        const img = element.querySelector('img[data-src]');
+                        if (img) {
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                            img.removeAttribute('data-src');
+                        }
+                    } else if (element.tagName === 'IMG' && element.hasAttribute('data-src')) {
+                        const imageSrc = element.dataset.src;
+                        if (!imageSrc) return;
+
+                        const img = new Image();
+                        img.onload = function() {
+                            element.src = imageSrc;
+                            element.classList.add('loaded');
+                        };
+                        img.src = imageSrc;
+                    }
+                });
+            }
+        });
+
+        // Filter button functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // E-commerce functionality
+        let cart = [];
+        const cartContainer = document.getElementById('cartContainer');
+        const cartToggle = document.getElementById('cartToggle');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartCounter = document.getElementById('cartCounter');
+        const cartTotal = document.getElementById('cartTotal');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+
+        // Toggle cart visibility
+        cartToggle.addEventListener('click', function() {
+            cartContainer.classList.add('active');
+        });
+
+        closeCart.addEventListener('click', function() {
+            cartContainer.classList.remove('active');
+        });
+
+        // Close cart when clicking outside
+        document.addEventListener('click', function(event) {
+            if (cartContainer.classList.contains('active') && 
+                !cartContainer.contains(event.target) && 
+                !cartToggle.contains(event.target)) {
+                cartContainer.classList.remove('active');
+            }
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h3').textContent;
+                
+                // Extract price from the discount-price element
+                const priceElement = productCard.querySelector('.discount-price');
+                const priceText = priceElement.textContent.replace('$', '');
+                const price = parseFloat(priceText);
+                
+                // Get image source
+                const imageElement = productCard.querySelector('.image-content');
+                const imageSrc = imageElement.getAttribute('data-src') || imageElement.src;
+                
+                // Check if product already in cart
+                const existingItem = cart.find(item => item.name === productName);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        name: productName,
+                        price: price,
+                        image: imageSrc,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                
+                // Show notification
+                showNotification(`${productName} added to cart!`);
+            });
+        });
+
+        // Update cart display
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCounter.textContent = totalItems;
+            
+            // Update cart items
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart-message" id="emptyCartMessage">Your cart is empty</p>';
+                cartTotal.textContent = '$0.00';
+                return;
+            }
+            
+            cartItems.innerHTML = '';
+            
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)} × ${item.quantity}</div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="quantity-btn decrease-qty" data-index="${index}">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn increase-qty" data-index="${index}">+</button>
+                            </div>
+                            <button class="remove-item" data-index="${index}">Remove</button>
+                        </div>
+                    </div>
+                `;
+                
+                cartItems.appendChild(cartItemElement);
+            });
+            
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+            
+            // Add event listeners to new buttons
+            document.querySelectorAll('.increase-qty').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart[index].quantity += 1;
+                    updateCart();
+                });
+            });
+            
+            document.querySelectorAll('.decrease-qty').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity -= 1;
+                    } else {
+                        cart.splice(index, 1);
+                    }
+                    updateCart();
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCart();
+                });
+            });
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = '#d4af37';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 20px';
+            notification.style.borderRadius = '4px';
+            notification.style.zIndex = '1001';
+            notification.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 3000);
+        }
+
+        // Initialize cart
+        updateCart();
+
+        // Optimize font loading completion
+        if ('fonts' in document) {
+            document.fonts.ready.then(() => {
+                // All fonts loaded, do something if needed
+            });
+        }
+    </script>
+
+    <!-- Async loading of non-critical JavaScript -->
+    <script src="script.min.js" defer async></script>
+    <script src="performance-monitoring.js" defer async></script>
+</body>
+</html>
