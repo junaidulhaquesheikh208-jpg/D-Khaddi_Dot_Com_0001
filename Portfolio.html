@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junaid Ul Haque Sheikh - Portfolio | Web Developer</title>
+
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Optimized font loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d4af37;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #d4af37;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: white;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-preview {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-preview iframe {
+            width: 200%;
+            height: 200%;
+            transform: scale(0.5);
+            transform-origin: top left;
+            border: none;
+            pointer-events: none;
+        }
+
+        .project-preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-preview-overlay {
+            opacity: 1;
+        }
+
+        .preview-btn {
+            background: #d4af37;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .preview-btn {
+            transform: translateY(0);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">KHAADI</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Shop.html">Shop</a></li>
+                <li><a href="Collections.html">Collections</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Portfolio.html" style="color: #d4af37;">Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <h1>Junaid Ul Haque Sheikh</h1>
+        <p>Passionate Web Developer with hands-on experience in building real-world websites and projects using modern tools and technologies.</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <a href="https://wa.me/923359033554">WhatsApp: +92 335 9033554</a>
+            </div>
+            <div class="contact-item">
+                <a href="https://wa.me/923343046525">WhatsApp: +92 334 3046525</a>
+            </div>
+            <div class="contact-item">
+                Karachi, Pakistan
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="stats-section">
+            <div class="stat-item">
+                <span class="stat-number">70+</span>
+                <span class="stat-label">Live Projects</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Dedication</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Available</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">My Live Projects</h2>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://khaadi-eight.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">1</span>
+                    <h3>Khaadi E-Commerce (Vercel)</h3>
+                    <a href="https://khaadi-eight.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://khaadi.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">2</span>
+                    <h3>Khaadi E-Commerce (Netlify)</h3>
+                    <a href="https://khaadi.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://khaadi.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">3</span>
+                    <h3>Khaadi Main (Vercel)</h3>
+                    <a href="https://khaadi.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://physical-ai-humanoid-robotics-essen.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">4</span>
+                    <h3>Physical AI Humanoid Robotics</h3>
+                    <a href="https://physical-ai-humanoid-robotics-essen.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://physical-ai-handbook.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">5</span>
+                    <h3>Physical AI Handbook</h3>
+                    <a href="https://physical-ai-handbook.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://teknofest-pakistan.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">6</span>
+                    <h3>Teknofest Pakistan</h3>
+                    <a href="https://teknofest-pakistan.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://frontend-of-todo.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">7</span>
+                    <h3>Todo App Frontend</h3>
+                    <a href="https://frontend-of-todo.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://todo-hackathon-ii-1qkg.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">8</span>
+                    <h3>Todo Hackathon II</h3>
+                    <a href="https://todo-hackathon-ii-1qkg.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://frontent-airbnb-5orv.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">9</span>
+                    <h3>Airbnb Frontend Clone</h3>
+                    <a href="https://frontent-airbnb-5orv.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://hackathon-book-chi.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">10</span>
+                    <h3>Hackathon Book</h3>
+                    <a href="https://hackathon-book-chi.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://my-book-five-liart.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">11</span>
+                    <h3>My Book Project</h3>
+                    <a href="https://my-book-five-liart.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://physical-ai-book-ashy.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">12</span>
+                    <h3>Physical AI Book</h3>
+                    <a href="https://physical-ai-book-ashy.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://physical-ai-humanoid-robotics-blond-eta.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">13</span>
+                    <h3>Physical AI Humanoid Robotics V2</h3>
+                    <a href="https://physical-ai-humanoid-robotics-blond-eta.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://physical-ai-and-humanoid-robotics-t-two.vercel.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">14</span>
+                    <h3>Physical AI & Humanoid Robotics</h3>
+                    <a href="https://physical-ai-and-humanoid-robotics-t-two.vercel.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://moonlit-duckanoo-b8a918.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">15</span>
+                    <h3>Moonlit Duckanoo Project</h3>
+                    <a href="https://moonlit-duckanoo-b8a918.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://chic-stardust-08d938.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">16</span>
+                    <h3>Chic Stardust Project</h3>
+                    <a href="https://chic-stardust-08d938.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://flourishing-platypus-b3d953.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">17</span>
+                    <h3>Flourishing Platypus</h3>
+                    <a href="https://flourishing-platypus-b3d953.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://joyful-semolina-af9f7f.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">18</span>
+                    <h3>Joyful Semolina</h3>
+                    <a href="https://joyful-semolina-af9f7f.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://symphonious-sunshine-5d07a9.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">19</span>
+                    <h3>Symphonious Sunshine</h3>
+                    <a href="https://symphonious-sunshine-5d07a9.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://cerulean-gingersnap-54fbfd.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">20</span>
+                    <h3>Cerulean Gingersnap</h3>
+                    <a href="https://cerulean-gingersnap-54fbfd.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://glistening-centaur-6c28c2.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">21</span>
+                    <h3>Glistening Centaur</h3>
+                    <a href="https://glistening-centaur-6c28c2.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://elaborate-cobbler-1e5dfd.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">22</span>
+                    <h3>Elaborate Cobbler</h3>
+                    <a href="https://elaborate-cobbler-1e5dfd.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://admirable-donut-837f32.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">23</span>
+                    <h3>Admirable Donut</h3>
+                    <a href="https://admirable-donut-837f32.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://courageous-genie-ba514c.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">24</span>
+                    <h3>Courageous Genie</h3>
+                    <a href="https://courageous-genie-ba514c.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://bucolic-palmier-32bf39.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">25</span>
+                    <h3>Bucolic Palmier</h3>
+                    <a href="https://bucolic-palmier-32bf39.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://storied-lamington-cc9bb7.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">26</span>
+                    <h3>Storied Lamington</h3>
+                    <a href="https://storied-lamington-cc9bb7.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://eclectic-pudding-a640fd.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">27</span>
+                    <h3>Eclectic Pudding</h3>
+                    <a href="https://eclectic-pudding-a640fd.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://gregarious-pithivier-bfe7e1.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">28</span>
+                    <h3>Gregarious Pithivier</h3>
+                    <a href="https://gregarious-pithivier-bfe7e1.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://marvelous-truffle-47a7a8.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">29</span>
+                    <h3>Marvelous Truffle</h3>
+                    <a href="https://marvelous-truffle-47a7a8.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://singular-cassata-1ad45a.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">30</span>
+                    <h3>Singular Cassata</h3>
+                    <a href="https://singular-cassata-1ad45a.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0001.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">31</span>
+                    <h3>Max Green Skills 01</h3>
+                    <a href="https://maxgreenskills0001.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0002.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">32</span>
+                    <h3>Max Green Skills 02</h3>
+                    <a href="https://maxgreenskills0002.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0003.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">33</span>
+                    <h3>Max Green Skills 03</h3>
+                    <a href="https://maxgreenskills0003.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0004.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">34</span>
+                    <h3>Max Green Skills 04</h3>
+                    <a href="https://maxgreenskills0004.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0005.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">35</span>
+                    <h3>Max Green Skills 05</h3>
+                    <a href="https://maxgreenskills0005.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0006.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">36</span>
+                    <h3>Max Green Skills 06</h3>
+                    <a href="https://maxgreenskills0006.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0007.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">37</span>
+                    <h3>Max Green Skills 07</h3>
+                    <a href="https://maxgreenskills0007.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0008.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">38</span>
+                    <h3>Max Green Skills 08</h3>
+                    <a href="https://maxgreenskills0008.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0009.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">39</span>
+                    <h3>Max Green Skills 09</h3>
+                    <a href="https://maxgreenskills0009.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0010.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">40</span>
+                    <h3>Max Green Skills 10</h3>
+                    <a href="https://maxgreenskills0010.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0011.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">41</span>
+                    <h3>Max Green Skills 11</h3>
+                    <a href="https://maxgreenskills0011.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0012.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">42</span>
+                    <h3>Max Green Skills 12</h3>
+                    <a href="https://maxgreenskills0012.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0013.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">43</span>
+                    <h3>Max Green Skills 13</h3>
+                    <a href="https://maxgreenskills0013.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://maxgreenskills0014.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">44</span>
+                    <h3>Max Green Skills 14</h3>
+                    <a href="https://maxgreenskills0014.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://gentle-paletas-ad33fe.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">45</span>
+                    <h3>Gentle Paletas</h3>
+                    <a href="https://gentle-paletas-ad33fe.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://enchanting-jalebi-d91b4a.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">46</span>
+                    <h3>Enchanting Jalebi</h3>
+                    <a href="https://enchanting-jalebi-d91b4a.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://heartfelt-syrniki-89f778.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">47</span>
+                    <h3>Heartfelt Syrniki</h3>
+                    <a href="https://heartfelt-syrniki-89f778.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://elegant-conkies-0f2bc5.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">48</span>
+                    <h3>Elegant Conkies</h3>
+                    <a href="https://elegant-conkies-0f2bc5.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://regal-conkies-c82884.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">49</span>
+                    <h3>Regal Conkies</h3>
+                    <a href="https://regal-conkies-c82884.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://splendid-granita-497cd1.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">50</span>
+                    <h3>Splendid Granita</h3>
+                    <a href="https://splendid-granita-497cd1.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://dapper-shortbread-ff7db9.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">51</span>
+                    <h3>Dapper Shortbread</h3>
+                    <a href="https://dapper-shortbread-ff7db9.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://classy-sawine-7615a6.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">52</span>
+                    <h3>Classy Sawine</h3>
+                    <a href="https://classy-sawine-7615a6.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://euphonious-kitsune-54fba5.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">53</span>
+                    <h3>Euphonious Kitsune</h3>
+                    <a href="https://euphonious-kitsune-54fba5.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://bespoke-zuccutto-c92482.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">54</span>
+                    <h3>Bespoke Zuccutto</h3>
+                    <a href="https://bespoke-zuccutto-c92482.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://muhammadhaseebamjad-portfolio.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">55</span>
+                    <h3>Muhammad Haseeb Portfolio</h3>
+                    <a href="https://muhammadhaseebamjad-portfolio.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://mystery-skills.netlify.app/mystery-skills-flash.html" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">56</span>
+                    <h3>Mystery Skills</h3>
+                    <a href="https://mystery-skills.netlify.app/mystery-skills-flash.html" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://shoesswebsite.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">57</span>
+                    <h3>Shoes Website</h3>
+                    <a href="https://shoesswebsite.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://graceful-lokum-783fe3.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">58</span>
+                    <h3>Graceful Lokum</h3>
+                    <a href="https://graceful-lokum-783fe3.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://sherazfood-web-b181f5.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">59</span>
+                    <h3>Sheraz Food Web</h3>
+                    <a href="https://sherazfood-web-b181f5.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://sheraz-portfolio-web.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">60</span>
+                    <h3>Sheraz Portfolio</h3>
+                    <a href="https://sheraz-portfolio-web.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://qasim-nazir.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">61</span>
+                    <h3>Qasim Nazir Portfolio</h3>
+                    <a href="https://qasim-nazir.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://extraordinary-narwhal-25805c.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">62</span>
+                    <h3>Extraordinary Narwhal</h3>
+                    <a href="https://extraordinary-narwhal-25805c.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://playful-jelly-91c854.netlify.app" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">63</span>
+                    <h3>Playful Jelly</h3>
+                    <a href="https://playful-jelly-91c854.netlify.app" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="project-preview-overlay">
+                        <a href="https://minahilf.github.io/HACKATHON-I-PHYSICAL-AI-HUMANOID/" target="_blank" class="preview-btn">Visit Site</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-number">64</span>
+                    <h3>Hackathon I - Physical AI</h3>
+                    <a href="https://minahilf.github.io/HACKATHON-I-PHYSICAL-AI-HUMANOID/" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Junaid Ul Haque Sheikh</h3>
+        <p>Web Developer | Karachi, Pakistan</p>
+        <p>WhatsApp: <a href="https://wa.me/923359033554">+92 335 9033554</a> | <a href="https://wa.me/923343046525">+92 334 3046525</a></p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/max-green-592218383" target="_blank">LinkedIn</a>
+            <a href="https://www.tiktok.com/@junaidsheikh0002" target="_blank">TikTok</a>
+            <a href="https://www.facebook.com/profile.php?id=161445889334255" target="_blank">Facebook</a>
+        </div>
+        <p style="margin-top: 1rem;">&copy; 2026 Junaid Ul Haque Sheikh. All rights reserved.</p>
+    </footer>
+</body>
+</html>
